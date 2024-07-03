@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'Plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <style>
+        .login-box {
+            width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid white;
+            margin-top: 100px;
+            padding: 0 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+
+        }
+
+        body {
+            background-image: url("{% static 'imgs/mask.jpg' %}");
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 80%;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="login-box">
+    <h2>用户登录</h2>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="form-group">
+            <label>{{ form.username.label }}</label>
+            {{ form.username }}
+            <span style="color: red">{{ form.username.errors.0 }}</span>
+        </div>
+        <div class="form-group">
+            <label>密码</label>
+            {{ form.password }}
+            <span style="color: red">{{ form.password.errors.0 }}</span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">登 录</button>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="{% url 'register_name' %}" class="btn btn-success">注册</a>
+            </div>
+        </div>
+        <span style="color: red">{{ error }}</span>
+    </form>
+</div>
+
+<script src="{% static 'js/code.jquery.com_jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'Plugins/bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+
+
+
+</body>
+</html>
